@@ -1,0 +1,32 @@
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+
+###########
+innodb_buffer_pool_size=256M	#(buffer pool used for caching data and indexes in memory)
+key_buffer_size=256M          	#()
+innodb_log_file_size=300M
+innodb_log_buffer_size=12M
+innodb_file_per_table=1		#(to enable innodb and send data to table only)
+max_connections = 3000 		#(mysql connection limit 3000 only)
+query_cache_size = 256M
+query_cache_type=1
+interactive_timeout=100
+connect_timeout=10
+user=mysql
+innodb_lock_wait_timeout=500
+innodb_flush_log_at_trx_commit=1
+long_query_time=10
+log-slow-queries=/var/log/mysql/log-slow-queries.log
+####################
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+# Settings user and group are ignored when systemd is used.
+# If you need to run mysqld under a different user or group,
+# customize your systemd unit file for mysqld according to the
+# instructions in http://fedoraproject.org/wiki/Systemd
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
